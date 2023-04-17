@@ -4,7 +4,7 @@ from tensorflow import keras
 from torchvision import transforms
 
 class img_predictor:
-    def __init__(self, ver=1):
+    def __init__(self, ver="1"):
         # Parameters
         model_path = "./models/ver."+ver+"/model_inc.hdf5"
         self.model = keras.models.load_model(model_path)
