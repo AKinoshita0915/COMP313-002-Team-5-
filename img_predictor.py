@@ -1,8 +1,8 @@
-
 # Load requirments
 from tensorflow import keras
 from PIL import Image
 import numpy as np
+import os
 
 
 class img_predictor:
@@ -11,6 +11,7 @@ class img_predictor:
         model_path = "./models/ver."+ver+"/model_inc.hdf5"
         self.model = keras.models.load_model(model_path)
         self.img_size = (299,299)
+        self.labels = os.listdir("")
 
     def predict(self, image):
         # Pre-process image
@@ -31,10 +32,11 @@ class img_predictor:
         p_image = p_image.tolist()
 
         # Predict image
-        pred = self.model.predict(p_image)
+        pred = self.model.predict([p_image])
+        pred_idx = np.argmax(pred)
 
         ## TODO return prediction with meaningful json container?
-        return pred
+        return pred_idx
 
 """
 Requirement:
